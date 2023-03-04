@@ -1,0 +1,20 @@
+@import './shared/reset.scss';
+@import './shared/text.scss';
+@import './shared/ui.scss';
+@import './shared/datgui.scss';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+:root {
+  --var--color--primary: #b2b2b2;
+  --var--color--base: #1e1e1e;
+}
