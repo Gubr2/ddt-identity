@@ -15,12 +15,12 @@ const pages = new Pages()
 
 let settings = {
   shrinkSpeed: 0.0005,
-  pixelSize: 400,
+  pixelSize: 600,
   noiseSize: 0.001,
   animationSpeed: 0.005,
-  arrayLimit: 25,
-  imageSizeVariations: 4,
-  lifeDuration: 1000,
+  arrayLimit: 200,
+  imageSizeVariations: 8,
+  lifeDuration: 500,
   repeatCount: 5,
 }
 
@@ -54,15 +54,16 @@ function init(_p5) {
       // }
       // _p5.scale(0.5)
       this.grow += 0.005
-      if (this.growDirection) {
-        for (let i = 0; i < settings.repeatCount; i++) {
-          _p5.image(this.image, this.x + this.grow * i, this.y + this.grow * i, this.r, this.r)
-        }
-      } else {
-        for (let i = 0; i < settings.repeatCount; i++) {
-          _p5.image(this.image, this.x - this.grow * i, this.y - this.grow * i, this.r, this.r)
-        }
-      }
+      // if (this.growDirection) {
+      //   for (let i = 0; i < settings.repeatCount; i++) {
+      //     _p5.image(this.image, this.x + this.grow * i, this.y + this.grow * i, this.r, this.r)
+      //   }
+      // } else {
+      //   for (let i = 0; i < settings.repeatCount; i++) {
+      //     _p5.image(this.image, this.x - this.grow * i, this.y - this.grow * i, this.r, this.r)
+      //   }
+      // }
+      _p5.image(this.image, this.x, this.y, this.r, this.r)
     }
   }
 
