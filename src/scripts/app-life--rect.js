@@ -3,6 +3,13 @@ import '../styles/index.scss'
 import gsap from 'gsap'
 import p5 from 'p5'
 
+import Pages from './modules/Pages'
+// import TextSeparator from './modules/TextSeparator'
+
+const pages = new Pages()
+// const textSeparator = new TextSeparator()
+// textSeparator.separate([])
+
 // // // // // // // // // // // // // // // // // // //
 // SETTINGS
 
@@ -13,7 +20,7 @@ let settings = {
   animationSpeed: 0.005,
   arrayLimit: 25,
   imageSizeVariations: 4,
-  lifeDuration: 1500,
+  lifeDuration: 1000,
   repeatCount: 5,
 }
 
@@ -104,21 +111,22 @@ function init(_p5) {
   // DRAW
 
   _p5.draw = () => {
-    _p5.background(255)
+    // _p5.background(255)
+    _p5.clear()
     _p5.noiseDetail(2, 0.2)
 
     // ---> Text
-    _p5.fill(0)
-    _p5.textSize(200)
-    _p5.textStyle(_p5.BOLD)
-    _p5.text('Design', 50, 200)
-    _p5.text('a digitální', 50, 400)
-    _p5.text('technologie', 50, 600)
+    // _p5.fill(0)
+    // _p5.textSize(200)
+    // _p5.textStyle(_p5.BOLD)
+    // _p5.text('Design', 50, 200)
+    // _p5.text('a digitální', 50, 400)
+    // _p5.text('technologie', 50, 600)
 
     // ---> Perlin Noise
     for (let y = 0; y < _p5.height; y += settings.pixelSize / settings.imageSizeVariations) {
       for (let x = 0; x < _p5.width; x += settings.pixelSize / settings.imageSizeVariations) {
-        noiseVal = _p5.noise(x * settings.noiseSize, y * settings.noiseSize, _p5.frameCount * settings.animationSpeed)
+        noiseVal = _p5.noise(x * settings.noiseSize, y * settings.noiseSize + _p5.frameCount * settings.animationSpeed, _p5.frameCount * settings.animationSpeed)
 
         if (noiseVal > 0.3 && noiseVal < 0.325) {
           // ---> Add to Array

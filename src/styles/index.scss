@@ -2,9 +2,19 @@
 @import './shared/text.scss';
 @import './shared/ui.scss';
 @import './shared/datgui.scss';
+@import './shared/slides.scss';
 
 * {
   box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+:root {
+  --var--color--primary: #b2b2b2;
+  --var--color--base: #1e1e1e;
 }
 
 body {
@@ -14,7 +24,8 @@ body {
   height: 100vh;
 }
 
-:root {
-  --var--color--primary: #b2b2b2;
-  --var--color--base: #1e1e1e;
+main {
+  position: relative;
+  z-index: 99;
+  pointer-events: none;
 }

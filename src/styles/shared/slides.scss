@@ -1,0 +1,60 @@
+.slide {
+  &--1 {
+    display: none;
+  }
+  &--2 {
+    display: none;
+  }
+  &--3 {
+    display: none;
+  }
+  &--4 {
+    display: none;
+  }
+  &--active {
+    display: block;
+  }
+}
+
+.slide__container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  font-family: 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+}
+
+.slide__headline {
+  position: absolute;
+  left: 10rem;
+  top: 7.5rem;
+
+  h1 {
+    font-size: 12rem;
+  }
+  h2 {
+    font-size: 10rem;
+  }
+}
+
+.slide__detail {
+  position: absolute;
+  right: 4rem;
+  bottom: 4rem;
+  text-align: end;
+  font-family: 'JetBrains Mono', monospace;
+  p {
+    font-size: 6rem;
+  }
+}
+
+.slide__text {
+  [data-separator-word-wrapper] {
+    overflow: hidden;
+  }
+  [data-separator-word] {
+    transform: translateY(10%);
+  }
+}
