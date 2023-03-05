@@ -7,7 +7,7 @@
     <title>DDT</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;600&display=swap" rel="stylesheet" />
   </head>
   <body>
     <!-- <div class="text-container">
@@ -22,6 +22,7 @@
       </div>
     </div> -->
     <div class="slide__container">
+      <div class="slide__controls"></div>
       <!-- 1 -->
       <div class="slide slide--1 slide--active">
         <div class="slide__headline">
@@ -34,7 +35,11 @@
         </div>
       </div>
       <!-- 2 -->
-      <div class="slide slide--2"></div>
+      <div class="slide slide--2" data-processing="none">
+        <video class="slide__video" autoplay loop muted playsinline>
+          <source src="../dist/videos/ddt_logo.mp4" type="video/mp4" />
+        </video>
+      </div>
       <!-- 3 -->
       <div class="slide slide--3">
         <div class="slide__headline">
@@ -56,6 +61,21 @@
           <p class="slide__text" data-separator="selector">Follow us</p>
           <p class="slide__text" data-separator="selector">@atelier_notfound</p>
         </div>
+      </div>
+      <!-- 5 -->
+      <div class="slide slide--5" data-processing="none">
+        <div class="slide__led">
+          <div class="slide__led__container">
+            <p>Design and digital technology | Lenka Hámošová - Ai Co-Creation</p>
+            <p>Design and digital technology | Lenka Hámošová - Ai Co-Creation</p>
+            <p>Design and digital technology | Lenka Hámošová - Ai Co-Creation</p>
+            <p>Design and digital technology | Lenka Hámošová - Ai Co-Creation</p>
+            <p>Design and digital technology | Lenka Hámošová - Ai Co-Creation</p>
+          </div>
+        </div>
+        <video class="slide__video" autoplay loop muted playsinline>
+          <source src="../dist/videos/hamosova.mp4" type="video/mp4" />
+        </video>
       </div>
     </div>
     <script src="./scripts/app-life--rect.js" type="module"></script>

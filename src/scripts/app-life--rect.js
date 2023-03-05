@@ -1,14 +1,10 @@
 import '../styles/index.scss'
 
+import * as dat from 'dat.gui'
 import gsap from 'gsap'
 import p5 from 'p5'
 
-import Pages from './modules/Pages'
-// import TextSeparator from './modules/TextSeparator'
-
-const pages = new Pages()
-// const textSeparator = new TextSeparator()
-// textSeparator.separate([])
+import Slides from './modules/Slides'
 
 // // // // // // // // // // // // // // // // // // //
 // SETTINGS
@@ -18,11 +14,37 @@ let settings = {
   pixelSize: 600,
   noiseSize: 0.001,
   animationSpeed: 0.005,
-  arrayLimit: 200,
+  arrayLimit: 100,
   imageSizeVariations: 8,
   lifeDuration: 500,
   repeatCount: 5,
+  colors: {
+    foreground: [0, 0, 0],
+    background: [255, 255, 255],
+  },
 }
+
+// // // // // // // // // // // // // // // // // //
+// DAT GUI
+const gui = new dat.GUI()
+let root = document.querySelector(':root')
+
+const slides = new Slides()
+
+// // // // // // // // // // // // // // // // // //
+// *** COLORS ***
+let colors = gui.addFolder('Colors')
+
+// ---> Primary
+colors.addColor(settings.colors, 'foreground').onChange(() => {
+  root.style.setProperty('--var--color--foreground', `rgb(${settings.colors.foreground[0]}, ${settings.colors.foreground[1]}, ${settings.colors.foreground[2]})`)
+})
+colors.addColor(settings.colors, 'background').onChange(() => {
+  root.style.setProperty('--var--color--background', `rgb(${settings.colors.background[0]}, ${settings.colors.background[1]}, ${settings.colors.background[2]})`)
+})
+
+// // // // // // // // // // // // // // // // // // //
+// MAIN
 
 function init(_p5) {
   // // // // // // // // // // // // // // // // // // //
@@ -35,15 +57,33 @@ function init(_p5) {
       this.scale = {
         value: 0,
       }
-      this.grow = 0
+      this.grow = {
+        value: 0.01,
+      }
       this.growDirection = Math.round(_p5.random(0, 1)) ? true : false
 
       this.growing = true
       this.image = images[Math.round(_p5.random(19))]
 
-      setTimeout(() => {
-        circlesArray.shift()
-      }, settings.lifeDuration)
+      gsap.to(this.grow, {
+        value: 1,
+        ease: 'expo.inOut',
+        duration: 1,
+        onComplete: () => {
+          gsap.to(this.grow, {
+            value: 0.01,
+            ease: 'expo.inOut',
+            duration: 1,
+            onComplete: () => {
+              circlesArray.shift()
+            },
+          })
+        },
+      })
+
+      // setTimeout(() => {
+      //   circlesArray.shift()
+      // }, settings.lifeDuration)
     }
 
     show() {
@@ -53,7 +93,12 @@ function init(_p5) {
       //   circlesArray.shift()
       // }
       // _p5.scale(0.5)
-      this.grow += 0.005
+      // if (this.grow >= 1) {
+      //   this.grow -= 0.005
+      // } else {
+      //   this.grow += 0.005
+      // }
+
       // if (this.growDirection) {
       //   for (let i = 0; i < settings.repeatCount; i++) {
       //     _p5.image(this.image, this.x + this.grow * i, this.y + this.grow * i, this.r, this.r)
@@ -63,7 +108,7 @@ function init(_p5) {
       //     _p5.image(this.image, this.x - this.grow * i, this.y - this.grow * i, this.r, this.r)
       //   }
       // }
-      _p5.image(this.image, this.x, this.y, this.r, this.r)
+      _p5.image(this.image, this.x, this.y, this.r * this.grow.value, this.r)
     }
   }
 
